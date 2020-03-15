@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Vue.JS - EventBus between child components</title>
+    </head>
+    <body>
+        <div id="app">
+            
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+        <script>
+            // Child-Component
+            Vue.component('child-component', {
+                template: '<button v-on:click="ChildComponentEventName">Alert</button>',
+                methods: {
+                    // Event Occuring Logic
+                    ChildComponentEventName: function(){
+                        this.$emit("myevent");
+                    }
+                }
+            });
+            
+            // Parent-Component
+            var app = new Vue({
+                el: "#app",
+                data: {
+                    mesage: "Hello Vue! passed from parrent component"
+                },
+                // Parent Component's Methods
+                methods: {
+                    parent_component_method_name: function(){
+                        alert("This is Parent Methods Function!!");
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

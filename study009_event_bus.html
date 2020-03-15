@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>Vue.JS - EventBus between child components</title>
+    </head>
+    <body>
+        <div id="app">
+            <child-component></child-component>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+        <script>
+            var kkamieventBus = new Vue();
+
+            Vue.component("child-component", {
+                template: "<div> Here is child component area <button v-on:click='alertMessage'>Alert</div>",
+                methods: {
+                    alertMessage: function(){
+                        kkamieventBus.$emit("test", 100);
+                    }
+                }
+            });
+
+            var app = new Vue({
+                el: "#app",
+                created: function(){
+                    kkamieventBus.$on("test", function(value) {
+                        alert("I got your event : " + value);
+                    });
+                }
+            });
+        </script>
+    </body>
+</html>

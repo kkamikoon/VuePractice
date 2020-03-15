@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>Vue.JS - Define Local/Global Components</title>
+    </head>
+    <body>
+        <div id="app">
+            <component1></component1>
+            <component2></component2>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+        <script>
+            var compo1 = {
+                template: "<div> first local component : {{ compo1Data }} </div>",
+                data: function() {
+                    return {
+                        compo1Data: 100
+                    }
+                }
+            }
+
+            var compo2 = {
+                template: "<div> second local component : {{ compo2Data }} </div>",
+                data: function() {
+                    return {
+                        compo2Data : compo1.data.compo1Data
+                    }
+                }
+            }
+            
+            new Vue({
+                el: "#app",
+                //local component register
+                components: {
+                    "component1" : compo1,
+                    "component2" : compo2
+                }
+            });
+
+        </script>
+    </body>
+</html>
