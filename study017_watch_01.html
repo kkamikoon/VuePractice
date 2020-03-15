@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vue.JS</title>
+    </head>
+    <body>
+        <div id="app">
+            <input v-model="message">
+        </div>
+        <!-- Basic Vue Module Inclusion -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+        <script>
+            new Vue({
+                el: "#app",
+                data: {
+                    message: "Hello kkamikoon Vue.js!"
+                },
+                watch: {
+                    message: function(data){
+                        console.log("It will be changed : ", data);
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

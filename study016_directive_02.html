@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vue.JS</title>
+    </head>
+    <body>
+        <div id="app">
+            <a v-if="flag">Do it Vue.js</a>
+            <ul>
+                <li v-for="system in systems">{{system}}</li>
+            </ul>
+            <p v-show="flag">Do it Vue.js</p>
+            <h5 v-bind:id="uid">Vue Tutorial Book</h5>
+            <button v-on:click="popupAlert(10)">Warning Button</button>
+        </div>
+        <!-- Basic Vue Module Inclusion -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+        <script>
+            new Vue({
+                el: "#app",
+                data: {
+                    flag: true,
+                    systems: ['android', 'ios', "window?"],
+                    uid: 10
+                },
+                methods: {
+                    popupAlert: function(num) {
+                        // const num = 0;
+                        // num++;
+                        // these are doesn't work...
+                        return alert("I warned you " + num + " times!!!");
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
