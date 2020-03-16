@@ -14,7 +14,7 @@
             
             Comment by https://beomy.tistory.com/52
             -->
-            <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem" class="shadow">
+            <li v-for="(todoItem, index) in propsdata" v-bind:key="todoItem" class="shadow">
                 <i class="checkBtn fa fa-check" aria-hidden="true"></i>
                 {{ todoItem }}
                 <span class="removeBtn" type="button" @click="removeTodo(todoItem, index)">
@@ -27,29 +27,16 @@
 
 <script>
 export default {
-    data() {
-        return {
-            todoItems: []
-        }
-    },
-    created() {
-        if (localStorage.length > 0) {
-            for (var i=0; i<localStorage.length; i++){
-                this.todoItems.push(localStorage.key(i));
-            }
-        }
-    },
+    props: ['propsdata'],
     methods: {
         removeTodo(todoItem, index) {
-            // console.log(todoItem, index);
-            localStorage.removeItem(todoItem);
-            this.todoItems.splice(index, 1);
+            this.$emit('removeTodo', todoItem, index);
         }
     }
 }
 </script>
 
-<style>
+<style scoped>
     ul {
         list-style-type: none;
         padding-left: 0px;

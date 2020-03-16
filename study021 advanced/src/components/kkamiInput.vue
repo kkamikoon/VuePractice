@@ -1,10 +1,10 @@
 <template>
     <div class="inputBox shadow">
-        <input type="text" v-model="newTodoItem" placeholder="Type what you have to do" v-on:keyup.enter="addItem">
-        <span class="addContainer" v-on:click="addItem">
+        <input type="text" v-model="newTodoItem" placeholder="Type what you have to do" v-on:keyup.enter="addTodo">
+        <span class="addContainer" v-on:click="addTodo">
             <i class="addBtn fa fa-plus" aria-hidden="true"></i>
         </span>
-        <!-- <button v-on:click="addItem">Add</button> -->
+        <!-- <button v-on:click="addTodo">Add</button> -->
     </div>
 </template>
 
@@ -23,13 +23,11 @@ export default {
             :varName: name of variable
             :varVal:  value of variable
          */
-        addItem() {
+        addTodo() {
             //console.log(this.newTodoItem);
-            if (this.newTodoItem !== ""){
-                // Eliminate White-Space Character front and end.
+            if(this.newTodoItem !== "") {
                 var value = this.newTodoItem && this.newTodoItem.trim();
-                localStorage.setItem(this.newTodoItem, this.newTodoItem);
-                // Clearing Input Value - custom function
+                this.$emit("addTodo", value);
                 this.clearInput();
             }
         },
