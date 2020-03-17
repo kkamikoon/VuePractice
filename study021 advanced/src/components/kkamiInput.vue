@@ -5,19 +5,30 @@
             <i class="addBtn fa fa-plus" aria-hidden="true"></i>
         </span>
         <!-- <button v-on:click="addTodo">Add</button> -->
+
+        <modal v-if="showModal" @close="showModal=false">
+            <h3 slot="header">Warning</h3>
+            <span slot="footer" @click="showModal=false">
+                Write your work to do.
+                <i class="closeModalBtn fa fa-times" aria-hidden="true"></i>
+            </span>
+        </modal>
     </div>
 </template>
 
 <script>
+import Modal from './common/Modal.vue'
+
 export default {
     data() {
         return {
             // It's not like placeholder
             // It is default setting of variable
-            newTodoItem: ""
+            newTodoItem: "",
+            showModal: false
         }
     },
-    methods:{
+    methods: {
         /*
         :function localStroage.setItem(varName, varVal):
             :varName: name of variable
@@ -27,13 +38,20 @@ export default {
             //console.log(this.newTodoItem);
             if(this.newTodoItem !== "") {
                 var value = this.newTodoItem && this.newTodoItem.trim();
+                // to emit a signal your value to App.vue's addTodo methods
                 this.$emit("addTodo", value);
                 this.clearInput();
+            }
+            else {
+                this.showModal = !this.showModal;
             }
         },
         clearInput() {
             this.newTodoItem = "";
         }
+    },
+    components: {
+        Modal: Modal
     }
 }
 </script>
